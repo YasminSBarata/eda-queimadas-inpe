@@ -3,6 +3,10 @@
 # [tool.databricks.environment]
 # environment_version = "6"
 # ///
+# MAGIC %pip install plotly -q
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC # 04 · EDA orientada a hipóteses — Maranhão: Cerrado × Amazônia
 # MAGIC

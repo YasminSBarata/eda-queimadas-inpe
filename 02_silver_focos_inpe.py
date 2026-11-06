@@ -273,14 +273,7 @@ display(s.orderBy("data_hora_utc").limit(10))
 # COMMAND ----------
 
 print("Focos por mês — TODOS os satélites vs. só o de referência (observe como a razão muda ao longo do ano):")
-display(
-    s.groupBy("ano", "mes")
-     .agg(F.count("*").alias("todos_satelites"),
-          F.sum(F.when(F.col("satelite_referencia"), 1).otherwise(0)).alias("so_aqua_mt"))
-     .withColumn("razao", F.round(F.when(F.col("so_aqua_mt") == 0, None).otherwise(
-          F.col("todos_satelites") / F.col("so_aqua_mt"), 1))
-     .orderBy("ano", "mes")
-)
+display(s.groupBy("ano", "mes").agg(F.count("*").alias("todos_satelites"), F.sum(F.when(F.col("satelite_referencia"), 1).otherwise(0)).alias("so_aqua_mt")).withColumn("razao", F.round(F.expr("try_divide(todos_satelites, so_aqua_mt)"), 1)).orderBy("ano", "mes"))
 
 # COMMAND ----------
 

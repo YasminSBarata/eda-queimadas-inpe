@@ -3,6 +3,10 @@
 # [tool.databricks.environment]
 # environment_version = "6"
 # ///
+# MAGIC %pip install plotly -q
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC # 03 · EDA orientada a hipóteses — exemplo guiado (professor)
 # MAGIC
